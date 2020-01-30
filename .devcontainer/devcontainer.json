@@ -3,7 +3,7 @@
 {
 	"name": "mllab",
 	"context": "..",
-	"dockerFile": "Dockerfile",
+	"dockerFile": "../Dockerfile",
 
 	// Use 'settings' to set *default* container specific settings.json values on container create. 
 	// You can edit these settings after create using File > Preferences > Settings > Remote.
@@ -57,8 +57,8 @@
 	],
 
 	// Uncomment the next line to run commands after the container is created - for example installing git.
-	"postCreateCommand": sudo apt-get update \
-		&& sudo apt-get install curl,
+	// "postCreateCommand": sudo apt-get update \
+	// 	&& sudo apt-get install curl,
 
 	// Add the IDs of extensions you want installed when the container is created in the array below.
 	"extensions": [

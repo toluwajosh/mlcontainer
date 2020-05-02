@@ -1,4 +1,4 @@
-FROM mllab:1.0.0
+FROM mlenv:1.0.0
 
 # The user name you can set you want.
 ARG USER_UID=1000

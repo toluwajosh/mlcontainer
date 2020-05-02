@@ -4,64 +4,71 @@
 	"name": "mllab",
 	"context": "..",
 	"dockerFile": "../Dockerfile",
-
 	// Use 'settings' to set *default* container specific settings.json values on container create. 
 	// You can edit these settings after create using File > Preferences > Settings > Remote.
-	"settings": { 
+	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash",
 		"python.pythonPath": "/opt/conda/bin/python",
 		"python.linting.enabled": true,
 		"python.linting.pylintEnabled": true,
-		"python.linting.pylintPath": "/opt/conda/bin/pylint"
+		"python.linting.pylintPath": "/opt/conda/bin/pylint",
+		"python.formatting.provider": "black",
+		"python.formatting.blackArgs": [
+			"--line-length=79"
+		],
 	},
-
 	// Uncomment the next line if you want to publish any ports.
 	// "appPort": [],
-
 	// Uncomment the next line to run commands after the container is created.
 	// "postCreateCommand": "python --version",
-
 	// Uncomment the next line to use a non-root user. On Linux, this will prevent
 	// new files getting created as root, but you may need to update the USER_UID
 	// and USER_GID in .devcontainer/Dockerfile to match your user if not 1000.
 	"runArgs": [
-	// connect display. use vscode way(ref. 1) but there is the safer way. Please see ref. [2]
-	//
-	// Linux has quite a few variations, but this should work for most.
-	//
-	// 1. Open .devcontainer/Dockerfile and be sure USER_UID and USER_GID
-	//    match your local user.(Run "id" from a terminal find these values.)
-	// 2. If you hit a problem with the display not being found, you may have
-	//    to run
-	//        "xhost +local:root"
-	//    on your host to give Docker access. but this is not safest options.
-	//    Eventually we should do ref. [2]
-	// 3. Uncomment "runArgs" below and open this repo in a container (or
-	//    use the Remote-Containers: Rebuild Container command if built).
-	//
-	// Ref:
-	// [1] vscode .devcontainer/devcontainer.json
-	// https://github.com/microsoft/vscode/blob/clantz/devcontainer/.devcontainer/devcontainer.json
-	// https://github.com/microsoft/vscode/blob/clantz/devcontainer/.devcontainer/Dockerfile
-	//
-	// [2] Running GUI apps in a Linux container
-	// https://riptutorial.com/docker/example/21831/running-gui-apps-in-a-linux-container
-	//
-	// [3] Docker ã‚³ãƒ³ãƒ†ãƒŠå†…ã®GUIã‚¢ãƒ—ãƒªã‚’èµ·å‹•ã—ã¦ãƒ›ã‚¹ãƒˆå´ã«è¡¨ç¤ºã™ã‚‹ (simplest)
-	// https://zukucode.com/2019/07/docker-gui-show.html
-	"-v", "/tmp/.X11-unix:/tmp/.X11-unix", "-v", "/dev/snd:/dev/snd", "-e", "DISPLAY=unix${env:DISPLAY}",
-	"--privileged", // OpenGL with hardware acceleration/direct rendering
-
-	// "-u", "vscode",
-	"--gpus", "all"
+		// connect display. use vscode way(ref. 1) but there is the safer way. Please see ref. [2]
+		//
+		// Linux has quite a few variations, but this should work for most.
+		//
+		// 1. Open .devcontainer/Dockerfile and be sure USER_UID and USER_GID
+		//    match your local user.(Run "id" from a terminal find these values.)
+		// 2. If you hit a problem with the display not being found, you may have
+		//    to run
+		//        "xhost +local:root"
+		//    on your host to give Docker access. but this is not safest options.
+		//    Eventually we should do ref. [2]
+		// 3. Uncomment "runArgs" below and open this repo in a container (or
+		//    use the Remote-Containers: Rebuild Container command if built).
+		//
+		// Ref:
+		// [1] vscode .devcontainer/devcontainer.json
+		// https://github.com/microsoft/vscode/blob/clantz/devcontainer/.devcontainer/devcontainer.json
+		// https://github.com/microsoft/vscode/blob/clantz/devcontainer/.devcontainer/Dockerfile
+		//
+		// [2] Running GUI apps in a Linux container
+		// https://riptutorial.com/docker/example/21831/running-gui-apps-in-a-linux-container
+		//
+		// [3] Docker ã‚³ãƒ³ãƒ†ãƒŠå†…ã®GUIã‚¢ãƒ—ãƒªã‚’èµ·å‹•ã—ã¦ãƒ›ã‚¹ãƒˆå´ã«è¡¨ç¤ºã™ã‚‹ (simplest)
+		// https://zukucode.com/2019/07/docker-gui-show.html
+		"-v",
+		"/tmp/.X11-unix:/tmp/.X11-unix",
+		"-v",
+		"/dev/snd:/dev/snd",
+		"-e",
+		"DISPLAY=unix${env:DISPLAY}",
+		"--privileged", // OpenGL with hardware acceleration/direct rendering
+		// "-u", "vscode",
+		"--gpus",
+		"all"
 	],
-
-	// Uncomment the next line to run commands after the container is created - for example installing git.
+	// Uncomment the next lines to run commands after the container is created - for example installing git.
 	// "postCreateCommand": sudo apt-get update \
 	// 	&& sudo apt-get install curl,
 
 	// Add the IDs of extensions you want installed when the container is created in the array below.
 	"extensions": [
-		"ms-python.python"
+		"ms-python.python",
+		"njpwerner.autodocstring",
+		"coenraads.bracket-pair-colorizer-2",
+		"cschlosser.doxdocgen"
 	]
 }

@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES all
@@ -9,9 +9,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y \
     && apt-get install -y  --no-install-recommends \
     apt-utils \
-    locales \
+    tzdata \
+    sudo \
+    lsb-release \
+    systemd \
     software-properties-common \
-    locales-all \
     dialog \
     && add-apt-repository ppa:git-core/ppa \
     && apt-get update -y --fix-missing \
@@ -69,7 +71,6 @@ RUN conda install pytorch torchvision cudatoolkit=10.1 -c pytorch \
     textacy \
     torchtext \
     tqdm \
-    wget \
     terminaltables \
     autopep8 \
     visdom \

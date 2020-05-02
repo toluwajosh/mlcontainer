@@ -8,33 +8,33 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y \
     && apt-get install -y  --no-install-recommends \
-        apt-utils \
-        locales \
-        software-properties-common \
-        locales-all \
-        dialog \
+    apt-utils \
+    locales \
+    software-properties-common \
+    locales-all \
+    dialog \
     && add-apt-repository ppa:git-core/ppa \
     && apt-get update -y --fix-missing \
     && apt-get install -y wget \
-        bzip2 \
-        ca-certificates \
-        build-essential \
-        byobu \
-        ca-certificates \
-        git-core \
-        git \
-        htop \
-        libglib2.0-0 \
-        libjpeg-dev \
-        libpng-dev \
-        libxext6 \
-        libsm6 \
-        vim \
-        libxrender1 \
-        libcupti-dev \
-        software-properties-common \
-        gedit \
-        curl \
+    bzip2 \
+    ca-certificates \
+    build-essential \
+    byobu \
+    ca-certificates \
+    git-core \
+    git \
+    htop \
+    libglib2.0-0 \
+    libjpeg-dev \
+    libpng-dev \
+    libxext6 \
+    libsm6 \
+    vim \
+    libxrender1 \
+    libcupti-dev \
+    software-properties-common \
+    gedit \
+    curl \
     # # Install commons
     # && apt-get -y install --no-install-recommends locales \
     #     locales-all \
@@ -59,22 +59,22 @@ ENV PATH /opt/conda/bin:$PATH
 RUN conda install pytorch torchvision cudatoolkit=10.1 -c pytorch \
     # Install Python packages
     && pip --no-cache-dir install --upgrade \
-        opencv-python \
-        opencv-contrib-python \
-        tensorflow-gpu \
-        keras \
-        Pillow \
-        scikit-learn \
-        sklearn_pandas \
-        textacy \
-        torchtext \
-        tqdm \
-        wget \
-        terminaltables \
-        autopep8 \
-        visdom \
-        matplotlib \
-        dask
+    opencv-python \
+    opencv-contrib-python \
+    tensorflow-gpu \
+    keras \
+    Pillow \
+    scikit-learn \
+    sklearn_pandas \
+    textacy \
+    torchtext \
+    tqdm \
+    wget \
+    terminaltables \
+    autopep8 \
+    visdom \
+    matplotlib \
+    dask
 
 
 # RUN echo 'export PATH="/opt/conda/bin/:$PATH"' >> ~/.bashrc
